@@ -1,0 +1,25 @@
+#------------------------------------------------------------------------------
+# File:   Makefile_p2_e1
+# Author: Javier Julve Yubero, Alejandro Benedi Andres
+# Date:   octubre 2022 
+#------------------------------------------------------------------------------
+
+#---------------------------------------------------------
+#definición de variables
+CC=g++
+CPPFLAGS=-I. -g -std=c++11      #opciones de compilación
+LDFLAGS=-pthread             	#opciones de enlazado (linkado)
+RM=rm -f
+
+all: main_p2_e1
+#-----------------------------------------------------------
+# Compilacion
+main_p2_e1.o: main_p2_e1.cpp
+	${CC} -c main_p2_e1.cpp ${CPPFLAGS}
+#linkado
+main_p2_e1: main_p2_e1.o
+	${CC} main_p2_e1.o -o main_p2_e1 ${LDFLAGS}
+#-----------------------------------------------------------	
+# LIMPIEZA de todo lo generado. 
+clean:
+	${RM} main_p2_e1.o main_p2_e1

@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/Julve/OneDrive/Escritorio/Uni/Año 2/Cuatri 1/Programación de sistemas concurrentes y distribuidos/Prácticas/Práctica 3",
+      "program": "c:/Users/Julve/OneDrive/Escritorio/Uni/Año 2/Cuatri 1/Programación de sistemas concurrentes y distribuidos/Prácticas/Práctica 3/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

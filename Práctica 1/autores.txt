@@ -1,0 +1,25 @@
+NIP: 840710
+Apellidos: Julve Yubero
+Nombre: Javier
+Comentarios:
+
+-Dificultades: Inexistentes.
+
+-Comportamiento ej 1:
+Ambos programas hacen lo mismo. Vemos que el orden de salida de las cadenas es diferente, esto es debido a que 
+en cada proceso utiliza un retardo diferente. Por lo tanto las cadenas "Soy Carmen" no se imprimira con 
+menos frecuencia que "Soy Baltasar". Tambien vemos que la cadena "Soy Baltasar" se repite todo el rato al 
+final ya que es la cadena es la cadena que mas veces se va a repetir.
+
+-Ejercicios 2 y 3:
+Ficheros fuente: ejercicio_2.cpp; ejercicio_3.cpp
+
+Compilación ejercicio 2: g++ ejercicio_2.cpp -o ejercicio_2 -std=c++11 -pthread
+
+Compilación ejercicio 3: g++ ejercicio_3.cpp -o ejercicio_3 -std=c++11 -pthread
+
+Estas dos lineas generan los archivos ejercicio_2.exe y ejercicio_3.exe respectivamente
+
+Ejecución ejercicio 2: ./ejercicio_2
+
+Ejecución ejercicio 3: ./ejercicio_3

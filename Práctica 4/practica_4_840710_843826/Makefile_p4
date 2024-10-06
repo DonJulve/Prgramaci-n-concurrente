@@ -1,0 +1,28 @@
+#------------------------------------------------------------------------------
+# File:   Makefile_p4
+# Author: Javier Julve Yubero, Alejandro Benedi Andres
+# NIPS:   840710, 843826
+#------------------------------------------------------------------------------
+
+#---------------------------------------------------------
+#definición de variables
+CC=g++
+CPPFLAGS=-I. -g -std=c++11      #opciones de compilación
+LDFLAGS=-pthread             	#opciones de enlazado (linkado)
+RM=rm -f
+
+all: practica_4
+#-----------------------------------------------------------
+# Compilacion
+ControlParejas.o: ControlParejas.cpp
+	${CC} -c ControlParejas.cpp ${CPPFLAGS}
+
+practica_4.o: practica_4.cpp
+	${CC} -c practica_4.cpp ${CPPFLAGS}
+#linkado
+practica_4: practica_4.o ControlParejas.o
+	${CC} practica_4.o ControlParejas.o -o practica_4 ${LDFLAGS}
+#-----------------------------------------------------------	
+# LIMPIEZA de todo lo generado. 
+clean:
+	${RM} practica_4.o ControlParejas.o practica_4

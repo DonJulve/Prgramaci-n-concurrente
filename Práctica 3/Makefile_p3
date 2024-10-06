@@ -1,0 +1,41 @@
+#*****************************************************************
+# File:   Makefile_p3
+# Author: PSCD-Unizar
+# Date:   octubre 2022
+# Coms:   Ejecutar "make -f Makefile_p3" para compilar
+#         Ejecutar "make -f Makefile_p3 clean" para limpiar (borrar lo que genere)
+#*****************************************************************
+
+#---------------------------------------------------------
+# macros
+RM = /bin/rm -f  # para limpiar
+CC = g++         # compilador
+#---------------------------------------------------------
+SEM_LIB=./librerias/Semaphore_V4
+SEMAPHORE=${SEM_LIB}/Semaphore_V4
+#---------------------------------------------------------
+# opciones compilación y enlazado ("linkado")
+CPPFLAGS = -I. -I${SEM_LIB} -O2 -std=c++11 -fmax-errors=1 # opciones compilación
+LDFLAGS  = -pthread  # opciones de "linkado"
+#---------------------------------------------------------
+# vars
+EJEC = practica_3
+
+all: ${EJEC}
+#---------------------------------------------------------
+# "linkar"
+${EJEC}: ${EJEC}.o ${SEMAPHORE}.o
+	${CC} ${EJEC}.o ${SEMAPHORE}.o -o ${EJEC} ${CPPFLAGS} ${LDFLAGS}
+
+#---------------------------------------------------------
+# compilar
+${EJEC}.o: ${EJEC}.cpp
+	${CC} -c ${EJEC}.cpp -o ${EJEC}.o ${CPPFLAGS}
+
+${SEMAPHORE}.o: ${SEMAPHORE}.hpp ${SEMAPHORE}.cpp
+	${CC} -c ${SEMAPHORE}.cpp -o ${SEMAPHORE}.o ${CPPFLAGS}
+
+#---------------------------------------------------------
+# Cuidado con lo que se pone aquí, que se borra sin preguntar
+clean:
+	$(RM) ${SEMAPHORE}.o ${EJEC}.o ${EJEC}

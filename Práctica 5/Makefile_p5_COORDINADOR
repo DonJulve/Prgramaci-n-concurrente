@@ -1,0 +1,46 @@
+#*****************************************************************
+# File:   Makefile_p5_COORDINADOR
+# Author: Javier Julve Yubero(840710), Alejandro Benedi Andres (843826)
+# Date:   diciembre 2022
+# Coms:   Ejemplo de Makefile para la práctica 5 de PSCD
+#         "make -f Makefile_p5" construye el ejecutable Coordinador
+#*****************************************************************
+
+#---------------------------------------------------------
+CC=g++
+
+Coordinador = practica_5_COORDINADOR
+SOCKET_DIR=Socket
+MONITOR = ControlParejas
+SOCKET=${SOCKET_DIR}/Socket
+
+CPPFLAGS=-I. -I${SOCKET_DIR} -std=c++11 -lsockets # Flags compilacion
+LDFLAGS=-pthread # Flags linkado threads
+
+all: ${Coordinador} 
+#----------------------------------------------------------------------------
+#Para gestionar opciones de compilación según la máquina: hendrix tiene sus manías
+#Descomentar la siguiente línea para compilar en hendrix
+SOCKETSFLAGS=-lsocket -lnsl
+#-----------------------------------------------------------
+# Coordinador
+# Compilacion
+${Coordinador}.o: ${Coordinador}.cpp 
+	${CC} -c ${CPPFLAGS} ${Coordinador}.cpp
+
+${MONITOR}.o: ${MONITOR}.cpp
+	${CC} -c ${CPPFLAGS} ${MONITOR}.cpp
+# Linkado
+${Coordinador}: ${SOCKET}.o ${Coordinador}.o ${MONITOR}.o
+	${CC} ${LDFLAGS} ${SOCKET}.o ${Coordinador}.o ${MONITOR}.o -o Coordinador ${SOCKETSFLAGS}
+#-----------------------------------------------------------
+# SOCKETS
+# Compilacion libreria de Sockets
+${SOCKET}.o: ${SOCKET}.hpp ${SOCKET}.cpp
+	${CC} -c ${CPPFLAGS} ${SOCKET}.cpp -o ${SOCKET}.o
+#-----------------------------------------------------------	
+# LIMPIEZA
+clean:
+	$(RM) ${SOCKET}.o
+	$(RM) Coordinador ${Coordinador}.o
+	$(RM) ${MONITOR}.o
